@@ -1,0 +1,16 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: '../configs/config-android.gradle'
+apply from: '../configs/deps-groups.gradle'
+
+android {
+    namespace 'com.android.common'
+}
+
+dependencies {
+    androidkotlin()
+    ui()
+}

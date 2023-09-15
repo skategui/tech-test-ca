@@ -1,0 +1,55 @@
+ext.deps = [
+
+        'kotlin' : [
+            'core': "androidx.core:core-ktx:${versions.core_ktx}",
+            'appcompat': "androidx.appcompat:appcompat:${versions.appcompat}",
+            'lifecycle_runtime': "androidx.lifecycle:lifecycle-runtime-ktx:${versions.androidx_lifecycle}",
+            'lifecycle_vm': "androidx.lifecycle:lifecycle-viewmodel-compose:${versions.androidx_lifecycle}",
+            'lifecycle_runtime_compose': "androidx.lifecycle:lifecycle-runtime-compose:${versions.androidx_lifecycle}",
+            'activity_compose': "androidx.activity:activity-compose:${versions.androidx_activity}",
+            'navigation_compose': "androidx.navigation:navigation-compose:${versions.androidx_navigation}",
+            'coroutine': "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
+        ],
+
+        'ui' : [
+                "google_material": "com.google.android.material:material:${versions.google_material}",
+                "compose_material": "androidx.compose.material3:material3:${versions.compose_material}",
+                "material_icon" : "androidx.compose.material:material-icons-extended",
+                "compose_ui": 'androidx.compose.ui:ui',
+                "compose_ui_graphic": 'androidx.compose.ui:ui-graphics',
+                "compose_ui_tooling" : "androidx.compose.ui:ui-tooling",
+                "compose_ui_manifest" : "androidx.compose.ui:ui-test-manifest",
+                "compose_ui_tooling_preview": "androidx.compose.ui:ui-tooling-preview:${versions.ui_tooling_preview}",
+                "constraintlayout_compose": "androidx.constraintlayout:constraintlayout-compose:${versions.constraintlayout_compose}",
+                //loader
+                "compose_dialog_core": "com.maxkeppeler.sheets-compose-dialogs:core:${versions.dialog_compose}",
+                "compose_dialog_state": "com.maxkeppeler.sheets-compose-dialogs:state:${versions.dialog_compose}",
+                "compose_dialog_info": "com.maxkeppeler.sheets-compose-dialogs:info:${versions.dialog_compose}"
+        ],
+
+        'network' : [
+                "retrofit": "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                "converter_gson": "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+                "okttp": "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+                "logging" :  "com.squareup.okhttp3:logging-interceptor:${versions.okttp_interceptor}"
+        ],
+
+        'localdb' : [
+                "room": "androidx.room:room-runtime:${versions.room}",
+                "room_kpt": "androidx.room:room-compiler:${versions.room}",
+                "room_ktx": "androidx.room:room-ktx:${versions.room}",
+                "gson": "com.google.code.gson:gson:${versions.google_gson}",
+        ],
+
+        'di' : [
+                "koin" : "io.insert-koin:koin-android:${versions.koin}",
+                "koin_compose" : "io.insert-koin:koin-androidx-compose:${versions.koin}"
+        ],
+
+        'test' : [
+                "junit": "junit:junit:${versions.junit}",
+                "mockk": "io.mockk:mockk:${versions.mockk}",
+                "turbine": "app.cash.turbine:turbine:${versions.turbine}",
+                "coroutine_test" : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}",
+        ]
+]

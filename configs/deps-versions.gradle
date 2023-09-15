@@ -1,0 +1,41 @@
+ext.versions = [
+
+    // build
+    'minSdk'      : 21,
+    'targetSdk'   : 33,
+
+    // android
+    "core_ktx" : "1.10.1",
+    "appcompat" : "1.6.1",
+    "androidx_lifecycle" : "2.6.2",
+    "androidx_activity" : "1.7.2",
+    "androidx_navigation" : "2.6.0",
+    "coroutines" : '1.6.0',
+
+
+    // UI
+    "google_material" : "1.9.0",
+    "compose_material" : "1.1.1",
+    "constraintlayout_compose" : "1.0.1",
+    "dialog_compose": "1.2.0",
+    "ui_tooling_preview": "1.0.0-rc01",
+
+    // Local DB
+    "room" : "2.5.1",
+    "google_gson" : "2.10.1",
+
+    // DI
+    "koin" : "3.4.2",
+
+    // Network
+    "retrofit" : "2.9.0",
+    "okhttp" : "4.10.0",
+    "okttp_interceptor" : "4.7.2",
+
+    // Tests
+    "junit" : "4.13.2",
+    "androidx_junit" : "1.1.5",
+    "espresso" : "3.5.1",
+    "mockk" : "1.13.7",
+    "turbine" : "1.0.0"
+]

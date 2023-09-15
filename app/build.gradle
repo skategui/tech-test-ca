@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.application'
+}
+
+apply from: '../configs/config-android.gradle'
+apply from: '../configs/deps-groups.gradle'
+
+android {
+    namespace 'com.android.ca'
+
+    defaultConfig {
+        applicationId "com.android.ca"
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':banks')
+    implementation project(path: ':account')
+    implementation project(path: ':common')
+
+    androidkotlin()
+    di()
+}

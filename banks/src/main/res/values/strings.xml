@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="my_accounts">Mes Comptes</string>
+    <string name="credit_agricole_label">Crédit Agricole</string>
+    <string name="other_banks_label">Autres Banques</string>
+</resources>

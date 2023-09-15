@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loading_in_progress">Chargement en cours</string>
+    <string name="generic_error_msg">Une erreur est survenu</string>
+</resources>

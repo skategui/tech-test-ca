@@ -1,0 +1,25 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: '../configs/config-properties.gradle'
+apply from: '../configs/config-android.gradle'
+apply from: '../configs/deps-groups.gradle'
+
+android {
+    namespace 'com.android.banks'
+}
+
+dependencies {
+
+    implementation project(path: ':common')
+    testImplementation project(path: ':common-test')
+
+    androidkotlin()
+    networking()
+    localdb()
+    ui()
+    di()
+    testing()
+}

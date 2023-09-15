@@ -1,0 +1,93 @@
+apply from: '../configs/deps-all.gradle'
+
+def Group(Closure closure) {
+    closure.delegate = dependencies
+    return closure
+}
+
+ext {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Android Kotlin                                                                             //
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    androidkotlin = Group {
+        implementation deps.kotlin.core
+        implementation deps.kotlin.appcompat
+        implementation deps.kotlin.lifecycle_runtime
+        implementation deps.kotlin.lifecycle_vm
+        implementation deps.kotlin.lifecycle_runtime_compose
+        implementation deps.kotlin.activity_compose
+        implementation deps.kotlin.navigation_compose
+        implementation deps.kotlin.coroutine
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // UI                                                                                         //
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ui = Group {
+        api deps.ui.google_material
+        api deps.ui.compose_material
+        api deps.ui.compose_ui
+        api deps.ui.compose_ui_graphic
+        api deps.ui.compose_ui_tooling
+        api deps.ui.constraintlayout_compose
+        debugApi deps.ui.compose_ui_tooling
+        debugApi deps.ui.compose_ui_manifest
+        api deps.ui.material_icon
+
+        //loader
+        api deps.ui.compose_dialog_core
+        api deps.ui.compose_dialog_state
+        api deps.ui.compose_dialog_info
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // NETWORKING                                                                                 //
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    networking = Group {
+        implementation deps.network.retrofit
+        implementation deps.network.converter_gson
+        implementation deps.network.okttp
+        implementation deps.network.logging
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Local DB                                                                                   //
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    localdb = Group {
+        implementation deps.localdb.room
+        kapt deps.localdb.room_kpt
+        implementation deps.localdb.room_ktx
+        implementation deps.localdb.gson
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Dep INJECTION                                                                              //
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    di = Group {
+        implementation deps.di.koin
+        implementation deps.di.koin_compose
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // TESTING                                                                                     //
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    testing = Group {
+
+        // unit tests
+        testImplementation deps.test.junit
+        implementation deps.test.junit
+        testImplementation deps.test.mockk
+        testImplementation deps.test.turbine
+        testImplementation deps.test.coroutine_test
+        implementation deps.test.coroutine_test
+        androidTestImplementation deps.test.coroutine_test
+    }
+}
