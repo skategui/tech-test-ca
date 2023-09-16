@@ -9,7 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
-import com.android.ca.ui.theme.CreditAgricoleTheme
+import com.android.common.ui.theme.CreditAgricoleTheme
 
 class MainActivity : ComponentActivity() {
 

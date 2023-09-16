@@ -5,6 +5,7 @@ import android.app.Application
 import com.android.account.di.accountsModule
 import com.android.banks.di.banksModule
 import com.android.banks.di.networkModule
+import com.android.common.di.trackerModule
 
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -18,7 +19,7 @@ class CAApplication : Application() {
             androidLogger()
             androidContext(this@CAApplication)
             modules(
-                listOf(networkModule, banksModule, accountsModule)
+                listOf(networkModule, banksModule, accountsModule, trackerModule)
             )
         }
     }

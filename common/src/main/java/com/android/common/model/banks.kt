@@ -1,7 +1,7 @@
 package com.android.common.model
 
 data class Operation(
-    val amount: String,
+    val amount: Float,
     val timestamp: Long,
     val title: String
 )

@@ -47,9 +47,9 @@ internal class GetAccountUsecaseTest {
             title = "label",
             operations = listOf(
                 Operation(
-                    amount = "100", timestamp = 1644611558, title = "operationTitle"
+                    amount = 100f, timestamp = 1644611558, title = "operationTitle"
                 ), Operation(
-                    amount = "200", timestamp = 1644611558, title = "operationTitle2"
+                    amount = 200f, timestamp = 1644611558, title = "operationTitle2"
                 )
             ),
         )
@@ -74,9 +74,9 @@ internal class GetAccountUsecaseTest {
             title = "label",
             operations = listOf(
                 Operation(
-                    amount = "100", timestamp = 1644611558, title = "operationTitle"
+                    amount = 100f, timestamp = 1644611558, title = "operationTitle"
                 ), Operation(
-                    amount = "200", timestamp = 1644611558, title = "operationTitle2"
+                    amount = 200f, timestamp = 1644611558, title = "operationTitle2"
                 )
             ),
         )

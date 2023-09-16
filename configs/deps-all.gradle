@@ -51,5 +51,7 @@ ext.deps = [
                 "mockk": "io.mockk:mockk:${versions.mockk}",
                 "turbine": "app.cash.turbine:turbine:${versions.turbine}",
                 "coroutine_test" : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}",
+                "compose_ui_test" : "androidx.compose.ui:ui-test-junit4:${versions.compose_ui}",
+                "compose_ui_test_manifest" : "androidx.compose.ui:ui-test-manifest:${versions.compose_ui}",
         ]
 ]

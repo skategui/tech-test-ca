@@ -1,7 +1,5 @@
 package com.android.account.vm
 
-import com.android.account.vm.AccountDetailContract
-import com.android.account.vm.AccountDetailReducer
 import com.android.common.model.Operation
 import org.junit.Assert
 import org.junit.Before
@@ -49,9 +47,9 @@ internal class AccountDetailReducerTest {
         val label = "label"
         val operations = listOf(
             Operation(
-                amount = "100", timestamp = Date().time, title = "operationTitle"
+                amount = 100f, timestamp = Date().time, title = "operationTitle"
             ), Operation(
-                amount = "200", timestamp = Date().time, title = "operationTitle2"
+                amount = 200f, timestamp = Date().time, title = "operationTitle2"
             )
         )
         val currentState = AccountDetailContract.State(

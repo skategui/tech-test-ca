@@ -16,17 +16,15 @@ val banksModule = module {
 
     factory<BanksRepository> {
         BanksRepositoryImpl(
-            service = get<Retrofit>()
-                .create(BanksService::class.java)
+            service = get<Retrofit>().create(BanksService::class.java)
         )
     }
 
     single<BanksDatastore> { BanksDatastoreImpl() }
     factory<com.android.banks.usecase.GetBanksUsecase> {
         com.android.banks.usecase.GetBanksUsecaseImpl(
-            datastore = get(),
-            repository = get()
+            datastore = get(), repository = get()
         )
     }
-    viewModel { BanksViewModel(banksUsecase = get()) }
+    viewModel { BanksViewModel(banksUsecase = get(), tracker = get()) }
 }

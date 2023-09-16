@@ -58,9 +58,9 @@ fun AccountDetailScreenPreview() {
         title = "Compte depot",
         operations = listOf(
             Operation(
-                amount = "100", timestamp = Date().time, title = "operationTitle"
+                amount = 100f, timestamp = Date().time, title = "operationTitle"
             ), Operation(
-                amount = "200", timestamp = Date().time, title = "operationTitle2"
+                amount = 200f, timestamp = Date().time, title = "operationTitle2"
             )
         ),
         onBackPressed = {})
@@ -124,7 +124,7 @@ fun AccountDetailScreenUI(
 
 
         Icon(imageVector = Icons.Filled.Close,
-            contentDescription = "Close screen",
+            contentDescription = stringResource(com.android.account.R.string.content_description_close_screen),
             tint = MaterialTheme.colorScheme.secondary,
             modifier = Modifier
                 .constrainAs(crossRef) {

@@ -74,4 +74,26 @@ internal class BanksResponseTest {
         )
         Assert.assertThrows(Error::class.java) { banksResponse.toBanks() }
     }
+
+    @Test
+    fun `Given an incorrect amount, it throw an exception`() = runTest {
+
+        val banksResponse = BanksResponse(
+            isCA = 1, name = "Boursorama", accounts = listOf(
+                AccountDetailResponse(
+                    balance = 100.23f,
+                    id = "id",
+                    label = "label",
+                    operations = listOf(
+                        OperationResponse(
+                            amount = "incorrect_value", timestamp = "1644611558", title = "operationTitle"
+                        ), OperationResponse(
+                            amount = "200", timestamp = "1644611558", title = "operationTitle2"
+                        )
+                    ),
+                )
+            )
+        )
+        Assert.assertThrows(Error::class.java) { banksResponse.toBanks() }
+    }
 }

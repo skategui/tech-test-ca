@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.android.account.usecase.GetAccountUsecase
 import com.android.common.model.AccountDetail
 import com.android.common.model.Operation
+import com.android.common.tracker.Tracker
 import com.android.common_test.MainCoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
@@ -29,11 +30,16 @@ internal class AccountDetailViewModelTest {
     private lateinit var vm: AccountDetailViewModel
 
     @MockK
+    private lateinit var tracker: Tracker
+
+    @MockK
     private lateinit var usecase: GetAccountUsecase
 
     @Before
     fun setup() {
         MockKAnnotations.init(this)
+        coEvery { tracker.error(any(), any()) } returns Unit
+        coEvery { tracker.debug(any(), any()) } returns Unit
     }
 
     @After
@@ -50,9 +56,9 @@ internal class AccountDetailViewModelTest {
             title = "label",
             operations = listOf(
                 Operation(
-                    amount = "100", timestamp = 1644611558, title = "operationTitle"
+                    amount = 100f, timestamp = 1644611558, title = "operationTitle"
                 ), Operation(
-                    amount = "200", timestamp = 1644611558, title = "operationTitle2"
+                    amount = 200f, timestamp = 1644611558, title = "operationTitle2"
                 )
             ),
         )
@@ -62,7 +68,8 @@ internal class AccountDetailViewModelTest {
         vm = AccountDetailViewModel(
             accountId = accountId,
             getAccountUsecase = usecase,
-            ioDispatcher = dispatcher
+            ioDispatcher = dispatcher,
+            tracker = tracker
         )
 
         vm.uiState.test {
@@ -88,7 +95,8 @@ internal class AccountDetailViewModelTest {
         vm = AccountDetailViewModel(
             accountId = null,
             getAccountUsecase = usecase,
-            ioDispatcher = dispatcher
+            ioDispatcher = dispatcher,
+            tracker = tracker
         )
 
         vm.uiState.test {
@@ -112,7 +120,8 @@ internal class AccountDetailViewModelTest {
             vm = AccountDetailViewModel(
                 accountId = accountId,
                 getAccountUsecase = usecase,
-                ioDispatcher = dispatcher
+                ioDispatcher = dispatcher,
+                tracker = tracker
             )
 
             vm.singleEvent.test {
@@ -129,7 +138,8 @@ internal class AccountDetailViewModelTest {
         vm = AccountDetailViewModel(
             accountId = accountId,
             getAccountUsecase = usecase,
-            ioDispatcher = dispatcher
+            ioDispatcher = dispatcher,
+            tracker = tracker
         )
 
         vm.singleEvent.test {

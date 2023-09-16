@@ -5,6 +5,7 @@ import com.android.account.usecase.GetAccountUsecase
 import com.android.common.base.BaseViewModel
 import com.android.common.model.AccountDetail
 import com.android.common.model.Operation
+import com.android.common.tracker.Tracker
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,6 +15,7 @@ import kotlinx.coroutines.launch
  */
 class AccountDetailViewModel(
     private val accountId: String?,
+    private val tracker : Tracker,
     private val getAccountUsecase: GetAccountUsecase,
     private val reducer: AccountDetailReducer = AccountDetailReducer(),
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -77,6 +79,7 @@ class AccountDetailViewModel(
      */
     private fun handleErrors(throwable: Throwable?) {
         // Log error to the server with the user info / context
+        tracker.error(this::class.toString(), throwable?.message)
         // Check if the different type of exception that could be thrown to display a specific message to the user
         setState { reducer.reduce(this, AccountDetailReducer.PartialState.HideLoader) }
         setSingleEvent { AccountDetailContract.SingleEvent.DisplayErrorMessage }

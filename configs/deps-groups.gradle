@@ -89,5 +89,7 @@ ext {
         testImplementation deps.test.coroutine_test
         implementation deps.test.coroutine_test
         androidTestImplementation deps.test.coroutine_test
+        androidTestImplementation deps.test.compose_ui_test
+        debugImplementation deps.test.compose_ui_test_manifest
     }
 }

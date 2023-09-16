@@ -12,5 +12,5 @@ val accountsModule = module {
             datastore = get()
         )
     }
-    viewModel { AccountDetailViewModel(get(), getAccountUsecase = get()) }
+    viewModel { AccountDetailViewModel(get(), getAccountUsecase = get(), tracker = get()) }
 }

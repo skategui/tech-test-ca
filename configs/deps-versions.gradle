@@ -37,5 +37,6 @@ ext.versions = [
     "androidx_junit" : "1.1.5",
     "espresso" : "3.5.1",
     "mockk" : "1.13.7",
-    "turbine" : "1.0.0"
+    "turbine" : "1.0.0",
+    "compose_ui" : "1.5.1"
 ]

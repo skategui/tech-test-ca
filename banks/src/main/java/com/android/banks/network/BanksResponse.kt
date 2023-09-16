@@ -31,12 +31,18 @@ fun OperationResponse.toOperation(): Operation {
 
     val timestamp = try {
         this.timestamp.toLong()
-    } catch (e : Exception) {
+    } catch (e: Exception) {
         throw Error("Format received for timestamp not correct")
     }
 
+    val amount = try {
+        this.amount.replace(',', '.').toFloat()
+    } catch (e: Exception) {
+        throw Error("Format received for amount not correct")
+    }
+
     return Operation(
-        amount = this.amount,
+        amount = amount,
         timestamp = timestamp, title = this.title
     )
 }

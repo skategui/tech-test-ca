@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.android.banks.usecase.GetBanksUsecase
 import com.android.common.base.BaseViewModel
 import com.android.common.model.Banks
+import com.android.common.tracker.Tracker
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
  */
 class BanksViewModel(
     private val banksUsecase: GetBanksUsecase,
+    private val tracker : Tracker,
     private val reducer: BanksReducer = BanksReducer(),
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : BaseViewModel<BanksContract.Interaction, BanksContract.State, BanksContract.SingleEvent>(
@@ -87,6 +89,7 @@ class BanksViewModel(
      */
     private fun handleErrors(throwable: Throwable?) {
         // Log error to the server with the user info / context
+        tracker.error(this::class.toString(), throwable?.message)
         // Check if the different type of exception that could be thrown to display a specific message to the user
         setState { reducer.reduce(this, BanksReducer.PartialState.HideLoader) }
         setSingleEvent { BanksContract.SingleEvent.DisplayErrorMessage }

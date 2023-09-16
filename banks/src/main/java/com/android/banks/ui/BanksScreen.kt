@@ -252,7 +252,7 @@ private fun BankItem(banksName: String, amountTotal: Float, expanded: MutableSta
 
 
         PricingRowItem(
-            balance = amountTotal.twoDigits(),
+            balance = amountTotal,
             modifier = Modifier
                 .padding(end = 50.dp)
                 .align(Alignment.CenterEnd)

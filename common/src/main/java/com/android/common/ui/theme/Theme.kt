@@ -1,4 +1,4 @@
-package com.android.ca.ui.theme
+package com.android.common.ui.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme

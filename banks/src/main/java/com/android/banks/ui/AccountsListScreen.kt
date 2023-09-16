@@ -27,7 +27,7 @@ import com.android.common.utils.twoDigits
 
 @Composable
 internal fun AccountsDetailList(accounts: List<AccountDetail>, onAccountClicked: (String) -> Unit) {
-    val accountsSorted = accounts.sortedBy { it.title.toLowerCase() }
+    val accountsSorted = accounts.sortedBy { it.title.lowercase() }
     Column {
         accountsSorted.forEach { account ->
             AccountDetailItem(account, onAccountClicked)
@@ -54,7 +54,7 @@ private fun AccountDetailItem(account: AccountDetail, onAccountClicked: (String)
 
 
         PricingRowItem(
-            balance = account.balance.twoDigits(),
+            balance = account.balance,
             modifier = Modifier
                 .padding(end = 50.dp)
                 .align(Alignment.CenterEnd)

@@ -5,6 +5,7 @@ import com.android.banks.usecase.GetBanksUsecase
 import com.android.common.model.AccountDetail
 import com.android.common.model.Banks
 import com.android.common.model.Operation
+import com.android.common.tracker.Tracker
 import com.android.common_test.MainCoroutineRule
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
@@ -31,9 +32,14 @@ internal class BanksViewModelTest {
     @MockK
     private lateinit var usecase: GetBanksUsecase
 
+    @MockK
+    private lateinit var tracker: Tracker
+
     @Before
     fun setup() {
         MockKAnnotations.init(this)
+        coEvery { tracker.error(any(), any()) } returns Unit
+        coEvery { tracker.debug(any(), any()) } returns Unit
     }
 
     @After
@@ -49,7 +55,7 @@ internal class BanksViewModelTest {
         coEvery { usecase.banks() } returns flow
         coEvery { usecase.loadBanks() } returns Unit
 
-        vm = BanksViewModel(banksUsecase = usecase, ioDispatcher = dispatcher)
+        vm = BanksViewModel(banksUsecase = usecase, ioDispatcher = dispatcher, tracker = tracker)
         vm.setEvent(BanksContract.Interaction.AccountClicked(accountId))
 
         vm.singleEvent.test {
@@ -73,9 +79,9 @@ internal class BanksViewModelTest {
                         title = "label",
                         operations = listOf(
                             Operation(
-                                amount = "100", timestamp = 1644611558, title = "operationTitle"
+                                amount = 100f, timestamp = 1644611558, title = "operationTitle"
                             ), Operation(
-                                amount = "200", timestamp = 1644611558, title = "operationTitle2"
+                                amount = 200f, timestamp = 1644611558, title = "operationTitle2"
                             )
                         ),
                     )
@@ -86,7 +92,7 @@ internal class BanksViewModelTest {
         val flow = MutableSharedFlow<List<Banks>>()
         coEvery { usecase.banks() } returns flow
         coEvery { usecase.loadBanks() } returns Unit
-        vm = BanksViewModel(banksUsecase = usecase, ioDispatcher = dispatcher)
+        vm = BanksViewModel(banksUsecase = usecase, ioDispatcher = dispatcher, tracker = tracker)
 
         vm.uiState.test {
             Assert.assertEquals(BanksContract.State(isLoading = false),awaitItem())
@@ -101,7 +107,7 @@ internal class BanksViewModelTest {
         val flow = MutableSharedFlow<List<Banks>>()
         coEvery { usecase.banks() } returns flow
         coEvery { usecase.loadBanks() }.throws(Exception("error"))
-        vm = BanksViewModel(banksUsecase = usecase, ioDispatcher = dispatcher)
+        vm = BanksViewModel(banksUsecase = usecase, ioDispatcher = dispatcher, tracker = tracker)
 
         vm.singleEvent.test {
             val res = awaitItem()
