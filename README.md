@@ -31,6 +31,13 @@ Technical tests for CA.
 
 ### Demo 🔥
 
+
+<video width="630" height="300" src="https://github.com/skategui/tech-test-ca/assets/2959509/39d84928-f98e-47f6-99cf-70c993d38cf3.mp4"></video>
+<img width="342" alt="banks" src="https://github.com/skategui/tech-test-ca/assets/2959509/5cd9bc73-b9ad-4997-b661-72e0dda8cd9c">
+<img width="341" alt="operations" src="https://github.com/skategui/tech-test-ca/assets/2959509/59cb5741-cfd0-4313-aa52-eef8174fd12f">
+
+
+
 By Guillaume Agis - Sept 2023
 
 With love and passion <3
