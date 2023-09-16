@@ -29,6 +29,7 @@ Technical tests for CA.
 - CI : Add a CI to build + run the unit tests after each commit / add a nightly build that will run all the tests (junit + espresso, as it's longer to run).
 - ....
 
+### Demo 🔥
 
 By Guillaume Agis - Sept 2023
 

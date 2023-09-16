@@ -34,4 +34,5 @@ dependencies {
 
     androidkotlin()
     di()
+    ui()
 }

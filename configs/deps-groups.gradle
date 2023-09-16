@@ -27,20 +27,22 @@ ext {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     ui = Group {
-        api deps.ui.google_material
-        api deps.ui.compose_material
-        api deps.ui.compose_ui
-        api deps.ui.compose_ui_graphic
-        api deps.ui.compose_ui_tooling
-        api deps.ui.constraintlayout_compose
-        debugApi deps.ui.compose_ui_tooling
-        debugApi deps.ui.compose_ui_manifest
-        api deps.ui.material_icon
+        implementation deps.ui.google_material
+        implementation deps.ui.compose_material
+        implementation deps.ui.compose_ui
+        implementation deps.ui.compose_ui_graphic
+        implementation deps.ui.compose_ui_tooling
+        implementation deps.ui.constraintlayout_compose
+        debugImplementation deps.ui.compose_ui_tooling
+        debugImplementation deps.ui.compose_ui_manifest
+        implementation deps.ui.material_icon
 
         //loader
-        api deps.ui.compose_dialog_core
-        api deps.ui.compose_dialog_state
-        api deps.ui.compose_dialog_info
+        implementation deps.ui.compose_dialog_core
+        implementation deps.ui.compose_dialog_state
+        implementation deps.ui.compose_dialog_info
+        // animation
+        implementation deps.ui.lottie
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

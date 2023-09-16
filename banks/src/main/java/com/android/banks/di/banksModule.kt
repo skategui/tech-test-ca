@@ -26,5 +26,5 @@ val banksModule = module {
             datastore = get(), repository = get()
         )
     }
-    viewModel { BanksViewModel(banksUsecase = get(), tracker = get()) }
+    single { BanksViewModel(banksUsecase = get(), tracker = get()) }
 }

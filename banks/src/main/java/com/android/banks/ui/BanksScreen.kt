@@ -17,7 +17,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -46,15 +45,12 @@ import com.android.common.model.AccountDetail
 import com.android.common.model.Banks
 import com.android.common.ui.CADivider
 import com.android.common.ui.ErrorPopup
-import com.android.common.ui.LoadingState
+import com.android.common.ui.LottieLoadingAnimation
 import com.android.common.ui.PricingRowItem
 import com.android.common.ui.TitleRowItem
 import com.android.common.ui.screens.Screens
 import com.android.common.ui.theme.BackgroundColor
-import com.android.common.ui.theme.LightBlack
 import com.android.common.ui.theme.LightGrey
-import com.android.common.ui.theme.MidGrey
-import com.android.common.utils.twoDigits
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.koinViewModel
 
@@ -90,6 +86,7 @@ fun BanksScreenPreview() {
     )
 
     BanksScreenUI(modifier = Modifier,
+        isLoading = false,
         caBanks = listOf(caBanks),
         otherBanks = listOf(otherBanks),
         onAccountClicked = { })
@@ -123,16 +120,9 @@ fun BanksScreen(
             })
     }
 
-    // LOADER
-    if (uiState.isLoading) {
-        LoadingState(
-            modifier = modifier,
-            message = stringResource(id = com.android.common.R.string.loading_in_progress)
-        )
-    }
-
     BanksScreenUI(modifier = modifier,
         caBanks = uiState.caBanks,
+        isLoading = uiState.isLoading,
         otherBanks = uiState.otherBanks,
         onAccountClicked = { accountId ->
             viewModel.setEvent(BanksContract.Interaction.AccountClicked(accountId))
@@ -142,6 +132,7 @@ fun BanksScreen(
 @Composable
 fun BanksScreenUI(
     modifier: Modifier,
+    isLoading: Boolean,
     caBanks: List<Banks>,
     otherBanks: List<Banks>,
     onAccountClicked: (String) -> Unit
@@ -152,7 +143,7 @@ fun BanksScreenUI(
             .fillMaxSize()
             .background(color = Color(0xFFF7F6F6))
     ) {
-        val (title, list) = createRefs()
+        val (title, list, loader) = createRefs()
 
 
         Text(
@@ -166,15 +157,23 @@ fun BanksScreenUI(
                 start.linkTo(parent.start, margin = 20.dp)
             },
         )
-
-        BanksList(grouped = mapOf(
-            stringResource(R.string.credit_agricole_label) to caBanks,
-            stringResource(R.string.other_banks_label) to otherBanks
-        ), onAccountClicked = onAccountClicked, modifier = Modifier.constrainAs(list) {
-            top.linkTo(title.bottom, margin = 40.dp)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-        })
+        if (isLoading) {
+            LottieLoadingAnimation(modifier = Modifier.constrainAs(loader) {
+                top.linkTo(title.bottom, margin = 40.dp)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                bottom.linkTo(parent.bottom)
+            })
+        } else {
+            BanksList(grouped = mapOf(
+                stringResource(R.string.credit_agricole_label) to caBanks,
+                stringResource(R.string.other_banks_label) to otherBanks
+            ), onAccountClicked = onAccountClicked, modifier = Modifier.constrainAs(list) {
+                top.linkTo(title.bottom, margin = 40.dp)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+            })
+        }
     }
 }
 

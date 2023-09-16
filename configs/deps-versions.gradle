@@ -19,6 +19,7 @@ ext.versions = [
     "constraintlayout_compose" : "1.0.1",
     "dialog_compose": "1.2.0",
     "ui_tooling_preview": "1.0.0-rc01",
+    "lottie" : "6.1.0",
 
     // Local DB
     "room" : "2.5.1",

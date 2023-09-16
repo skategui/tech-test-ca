@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
  */
 class BanksViewModel(
     private val banksUsecase: GetBanksUsecase,
-    private val tracker : Tracker,
+    private val tracker: Tracker,
     private val reducer: BanksReducer = BanksReducer(),
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : BaseViewModel<BanksContract.Interaction, BanksContract.State, BanksContract.SingleEvent>(

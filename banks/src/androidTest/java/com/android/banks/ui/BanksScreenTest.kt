@@ -3,6 +3,7 @@ package com.android.banks.ui
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
@@ -64,7 +65,7 @@ internal class BanksScreenTest {
 
 
     @Test
-    fun WhenLoadingDataIfRendersTheBankInfos() {
+    fun DisplayTheBanksInfo() {
 
         var onAccountClicked = 0
 
@@ -74,6 +75,7 @@ internal class BanksScreenTest {
                 BanksScreenUI(
                     modifier = Modifier,
                     caBanks = listOf(caBanks),
+                    isLoading = false,
                     otherBanks = listOf(otherBanks),
                     onAccountClicked = { onAccountClicked++ }
                 )
@@ -97,8 +99,7 @@ internal class BanksScreenTest {
             "${
                 otherBanks.accounts.map { it.balance }.sum().twoDigits()
             } €"
-        )
-            .assertIsDisplayed()
+        ).assertIsDisplayed()
 
 
 
@@ -140,5 +141,36 @@ internal class BanksScreenTest {
 
         composeTestRule.onNodeWithText(otherBanks.accounts[0].title).performClick()
         Assert.assertEquals(onAccountClicked, 1)
+    }
+
+
+
+    @Test
+    fun DisplayTheLoadingStateWithoutInfo() {
+
+        var onAccountClicked = 0
+
+        // Start the app
+        composeTestRule.setContent {
+            CreditAgricoleTheme {
+                BanksScreenUI(
+                    modifier = Modifier,
+                    caBanks = listOf(caBanks),
+                    isLoading = true,
+                    otherBanks = listOf(otherBanks),
+                    onAccountClicked = { onAccountClicked++ }
+                )
+            }
+        }
+
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.my_accounts))
+            .assertIsDisplayed()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.credit_agricole_label))
+            .assertDoesNotExist()
+        composeTestRule.onNodeWithText(composeTestRule.activity.getString(R.string.other_banks_label))
+            .assertDoesNotExist()
+
+        composeTestRule.onNodeWithText(caBanks.name).assertDoesNotExist()
+        composeTestRule.onNodeWithText(otherBanks.name).assertDoesNotExist()
     }
 }
