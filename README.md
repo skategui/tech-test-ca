@@ -31,12 +31,7 @@ Technical tests for CA.
 
 ### Demo 🔥
 
-
-
-
-
-
-<video width="630" height="300" src="https://github.com/skategui/tech-test-ca/assets/2959509/891144a6-335f-4d24-ad3a-a1f6ff7c03da.mp4"></video>
+![example app](screenshots/video.gif)
 <img width="342" alt="banks" src="https://github.com/skategui/tech-test-ca/assets/2959509/5cd9bc73-b9ad-4997-b661-72e0dda8cd9c">
 <img width="341" alt="operations" src="https://github.com/skategui/tech-test-ca/assets/2959509/59cb5741-cfd0-4313-aa52-eef8174fd12f">
 
